@@ -53,7 +53,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest
+          pytest tests/
 
   deploy:
     name: Deploy Model
