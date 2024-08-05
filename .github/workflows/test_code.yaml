@@ -1,0 +1,26 @@
+name: Test code and app
+on:
+  pull_request:
+    paths: # Run when one or more paths match a pattern listed below
+      - config/**
+      - training/**
+      - application/**
+      - .github/workflows/test_code.yaml
+jobs:
+    test_model:
+        name: Test new model
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout # Check out a repo
+              uses: actions/checkout@v2
+          
+            - name: Environment setup # Set up with a specific version of Python
+              uses: actions/setup-python@v2
+              with:
+                python-version: 3.8
+                cache: pip
+            
+            - name: Install dependencies
+              run: |
+                python -m pip install --upgrade pip
+                pip install -r requirements.txt
